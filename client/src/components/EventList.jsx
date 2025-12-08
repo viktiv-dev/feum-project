@@ -29,7 +29,7 @@ export default function EventList() {
             <li key={event.id}>
               <strong>{event.name}</strong> - {event.event_date ? new Date(event.event_date).toLocaleString() : 'No date'}<br/>
               Location: {event.location || 'N/A'}<br/>
-              Price: {event.price || 'Free'}<br/>
+              Price: {event.price || 'Free!'}<br/>
               Genre: {event.genre || 'N/A'}<br/>
               Description: {event.description || 'N/A'}
             </li>
