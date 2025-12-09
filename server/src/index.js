@@ -1,32 +1,13 @@
-// server/src/index.js
-require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
-const sequelize = require('./config/database');
-const { getEvents, createEvent } = require('./controllers/EventController');
-
 const app = express();
-app.use(cors());
+const eventRoutes = require('./routes/eventRoutes');
+const crewRoutes = require('./routes/crewRoutes')
+require('./config/database');
+
 app.use(express.json());
 
+app.use('/api/events', eventRoutes);
+app.use('/api/crew', crewRoutes)
+
 const PORT = process.env.PORT || 5000;
-
-// Initialize DB & start server
-async function init() {
-  try {
-    await sequelize.authenticate();
-    console.log('Database connected ✅');
-
-    await sequelize.sync({ alter: false }); // don't change existing table
-    console.log('Models synced ✅');
-
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  } catch (err) {
-    console.error('Database connection error ❌', err);
-  }
-}
-init();
-
-// Routes
-app.get('/api/events', getEvents);
-app.post('/api/events', createEvent);
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

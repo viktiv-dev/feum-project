@@ -32,7 +32,7 @@ export default function EventList() {
               Price: {event.price || 'Free!'}<br/>
               Genre: {event.genre || 'N/A'}<br/>
               Description: {event.description || 'N/A'}
-            </li>
+            </li> 
           ))}
         </ul>
       )}

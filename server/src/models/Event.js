@@ -14,8 +14,9 @@ const Event = sequelize.define('Event', {
   description: { type: DataTypes.STRING(8192) },
 }, {
   tableName: 'event',
-  timestamps: false, // disable if table doesn’t have createdAt/updatedAt
+  timestamps: false, 
 });
+
 
 
 module.exports = Event;
