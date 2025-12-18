@@ -1,4 +1,3 @@
-// server/src/models/Event.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
@@ -9,6 +8,7 @@ const Crew = sequelize.define('Crew', {
     role: { type: DataTypes.STRING(255), allowNull: false },
     start_time: { type: DataTypes.TIME },
     end_time: { type: DataTypes.TIME },
+    group_number: {type: DataTypes.DECIMAL(4, 2), allowNull: false}
 }, {
     tableName: 'crew',
     timestamps: false, 

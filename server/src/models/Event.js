@@ -1,4 +1,3 @@
-// server/src/models/Event.js
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
@@ -12,6 +11,7 @@ const Event = sequelize.define('Event', {
   price: { type: DataTypes.FLOAT },
   genre: { type: DataTypes.STRING(1024) },
   description: { type: DataTypes.STRING(8192) },
+  is_public: {type: DataTypes.BOOLEAN}
 }, {
   tableName: 'event',
   timestamps: false, 

@@ -1,7 +1,6 @@
 const { v4: uuidv4 } = require("uuid");
 const Crew = require("../models/Crew");
 
-// Get all crew for a specific event
 async function getCrewByEvent(eventId) {
   return await Crew.findAll({ where: { event_id: eventId } });
 }
@@ -14,6 +13,8 @@ async function addCrew(eventId, crewList) {
     role: member.role,
     start_time: member.start_time,
     end_time: member.end_time,
+    group_number: member.group_number
+    
   }));
 
   return await Crew.bulkCreate(crewToInsert);
@@ -25,9 +26,9 @@ async function updateCrew(id, data) {
   return await crew.update({
     names: data.names !== undefined ? data.names : crew.names,
     role: data.role !== undefined ? data.role : crew.role,
-    start_time:
-      data.start_time !== undefined ? data.start_time : crew.start_time,
+    start_time: data.start_time !== undefined ? data.start_time : crew.start_time,
     end_time: data.end_time !== undefined ? data.end_time : crew.end_time,
+    group_number: data.group_number !== undefined ? data.group_number : crew.group_number
   });
 }
 async function deleteCrew(id) {
