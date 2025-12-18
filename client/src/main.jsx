@@ -19,6 +19,71 @@ const theme = createTheme({
         variant: "outlined",
       },
     },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          color: "white"
+        }
+      }
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          color: "#ffffff",
+          "&.Mui-checked": {
+            color: "#ffffff", 
+          },
+          "&:hover": {
+            backgroundColor: "rgba(255,255,255,0.08)", 
+          },
+        },
+      },
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          color: "#ffffff", 
+          fontFamily: '"Helvetica Neue LT Std", Helvetica, Arial, sans-serif',
+          fontSize: "14px",
+          "& .MuiCheckbox-root": {
+            padding: "4px",
+          },
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          fontFamily: '"Helvetica Neue LT Std", Helvetica, Arial, sans-serif',
+          fontSize: "16px",
+          letterSpacing: "0.44em",
+          fontWeight: 400,
+          height: "40px",
+          textTransform: "none",
+          borderRadius: "0px",
+          padding: "10px 20px",
+          "&.Mui-selected": {
+            backgroundColor: "#333",
+            "&:hover": {
+              backgroundColor: "#444",
+            },
+          },
+          "&:hover": {
+            backgroundColor: "#1a1a1a",
+          },
+        },
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        primary: {
+          color: "#ffffff",
+          fontFamily: '"Helvetica Neue LT Std", Helvetica, Arial, sans-serif',
+          fontSize: "16px",
+          letterSpacing: "0.44em",
+        },
+      },
+    },
     MuiPickersOutlinedInput: {
       styleOverrides: {
         root: {

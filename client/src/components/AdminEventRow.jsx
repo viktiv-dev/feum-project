@@ -11,7 +11,7 @@ export const AdminEventRow = ({ event, onEdit, onDeleted }) => {
   const [confirming, setConfirming] = useState(false);
   const [confirmText, setConfirmText] = useState("");
 
-  const navigate = useNavigate(); // <-- hook
+  const navigate = useNavigate(); 
 
   const formattedDate = event.event_date
     ? new Date(event.event_date).toLocaleDateString("en-GB", {

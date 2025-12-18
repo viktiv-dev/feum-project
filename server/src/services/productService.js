@@ -1,7 +1,8 @@
-const Event = require("../models/Product");
+const Product = require("../models/Product");
 const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const path = require("path");
+const { underscoredIf } = require("sequelize/lib/utils");
 
 async function getProducts() {
  
@@ -17,7 +18,9 @@ async function createProduct(data) {
     name,
     category,
     unit,
-    volume_per_unit
+    volume_per_unit,
+    for_sale,
+    minimum_stock
   } = data;
 
   if (!name || name.trim() === "") {
@@ -29,7 +32,9 @@ async function createProduct(data) {
     name: name.trim(),
     category,
     unit,
-    volume_per_unit
+    volume_per_unit,
+    for_sale,
+    minimum_stock
   });
 }
 
@@ -49,7 +54,9 @@ async function updateProduct(id, data) {
     name: data.name !== undefined ? data.name : product.name,
     category: data.category !== undefined ? data.category : product.category,
     unit: data.unit !== undefined ? data.unit : product.unit,
-    volume_per_unit: data.volume_per_unit !== undefined ? data.volume_per_unit : product.volume_per_unit
+    volume_per_unit: data.volume_per_unit !== undefined ? data.volume_per_unit : product.volume_per_unit,
+    for_sale: data.for_sale !== undefined ? data.for_sale : product.for_sale,
+    minimum_stock: data.minimum_stock !== undefined ? data.minimum_stock : product.minimum_stock
   });
 }
 

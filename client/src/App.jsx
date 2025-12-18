@@ -6,6 +6,7 @@ import AdminEventsPage from "./pages/AdminEventsPage";
 import AdminAddEventPage from "./pages/AdminAddEventPage";
 import AdminEditEventPage from "./pages/AdminEditEventPage";
 import AdminPlanEventPage from "./pages/AdminPlanEventPage";
+import AdminBarPage from "./pages/AdminBarPage";
 function App() {
   return (
     <BrowserRouter>
@@ -48,6 +49,14 @@ function App() {
           element={
             <PrivateRoute>
               <AdminPlanEventPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin-bar"
+          element={
+            <PrivateRoute>
+              <AdminBarPage />
             </PrivateRoute>
           }
         />
