@@ -17,6 +17,4 @@ const Event = sequelize.define('Event', {
   timestamps: false, 
 });
 
-
-
 module.exports = Event;

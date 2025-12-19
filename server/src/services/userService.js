@@ -6,18 +6,14 @@ const SALT_ROUNDS = 10;
 
 async function createUser(data) {
     const { email, password, username } = data;
-
     if (!email || !password) {
         throw new Error('Email and password are required');
     }
-
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
         throw new Error('Email already in use');
     }
-
     const hashedPass = await bcrypt.hash(password, SALT_ROUNDS);
-
     const user = await User.create({
         id: uuidv4(),
         email,
@@ -33,7 +29,6 @@ async function loginUser(email, password) {
     if(!user) {
         throw new Error('Invalid email or password')
     }
-
     const isCorrect = await bcrypt.compare(password, user.password);
     if(!isCorrect) {
         throw new Error('Invalid email or password')
