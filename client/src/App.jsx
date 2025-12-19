@@ -7,10 +7,20 @@ import AdminAddEventPage from "./pages/AdminAddEventPage";
 import AdminEditEventPage from "./pages/AdminEditEventPage";
 import AdminPlanEventPage from "./pages/AdminPlanEventPage";
 import AdminBarPage from "./pages/AdminBarPage";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import EventsPage from "./pages/EventsPage";
+import EventDetailsPage from "./pages/EventDetailsPage";
+
 function App() {
+  
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/about" element={<AboutPage/>} />
+        <Route path="/events" element={<EventsPage/>} />
+        <Route path="/events/:id" element={<EventDetailsPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route
           path="/admin"

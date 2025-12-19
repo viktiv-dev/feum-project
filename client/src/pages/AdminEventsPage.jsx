@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getEvents } from "../services/eventService";
 import { Box, Typography, Container, Button } from "@mui/material";
 import AdminEventRow from "../components/AdminEventRow";
-import { NavBar } from "../components/NavBar";
+import { AdminNavBar } from "../components/AdminNavBar";
 import { useNavigate } from "react-router-dom";
 
 export const AdminEventsPage = () => {
@@ -43,7 +43,7 @@ export const AdminEventsPage = () => {
         bgcolor: "primary.main",
       }}
     >
-      <NavBar sx={{ position: "relative", zIndex: 3 }} />
+      <AdminNavBar sx={{ position: "relative", zIndex: 3 }} />
       <Box sx={{height: "80vh", display:"flex", justifyContent:"center", flexDirection: "column", alignItems: "center", gap: "20px"}}>
         <Typography variant="h4" sx={{textAlign: "center", fontSize:"2rem"}}>No events found</Typography>
         <Button onClick={handleAddEvent} sx={{fontSize: "1rem"}} variant="contained">Create Event</Button>
@@ -64,7 +64,7 @@ export const AdminEventsPage = () => {
         bgcolor: "primary.main",
       }}
     >
-      <NavBar sx={{ position: "relative", zIndex: 3 }} />
+      <AdminNavBar sx={{ position: "relative", zIndex: 3 }} />
       <Container maxWidth="xl" sx={{ px: 3, mx: "1rem" }}>
         <Typography variant="h4" textAlign="center" mt="7rem">
           EVENTS

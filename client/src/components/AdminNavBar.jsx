@@ -1,35 +1,38 @@
 import React from "react";
-import { AppBar, Toolbar, Stack, Box, IconButton } from "@mui/material";
-import { NavLink, useLocation } from "react-router-dom";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import { FaSoundcloud } from "react-icons/fa";
+import { AppBar, Toolbar, Stack, Button, Box } from "@mui/material";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
-export const NavBar = () => {
+export const AdminNavBar = () => {
+  const navigate = useNavigate();
   const location = useLocation();
+
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
   const navLinks = [
     {
       name: "Home",
-      path: "/",
-      match: ["/"],
+      path: "/admin",
+      match: ["/admin"],
       exact: true,
     },
     {
       name: "Events",
-      path: "/events",
-      match: ["/events"],
+      path: "/admin-events",
+      match: [
+        "/admin-events",
+        "/admin-event-add",
+        "/admin-event-edit",
+        "/admin-event-plan",
+      ],
     },
     {
-      name: "About",
-      path: "/about",
-      match: ["/about"],
-    },
-    {
-      name: "Contact",
-      path: "/contact",
-      match: ["/contact"],
+      name: "Bar",
+      path: "/admin-bar",
+      match: ["/admin-bar"],
     },
   ];
 
@@ -40,41 +43,21 @@ export const NavBar = () => {
       sx={{ px: 2, pt: 1, bgcolor: "#111111" }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Box sx={{ display: "flex", gap: 2 }}>
-          <IconButton
-            component="a"
-            href="https://www.instagram.com/feum_dk/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <InstagramIcon sx={{ color: "#fff" }} />
-          </IconButton>
-          <IconButton
-            component="a"
-            href="https://www.facebook.com/search/top?q=feum"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FacebookIcon sx={{ color: "#fff" }} />
-          </IconButton>
-          <IconButton
-            component="a"
-            href="https://soundcloud.com/feum"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaSoundcloud style={{ color: "#fff", width: 24, height: 24 }} />
-          </IconButton>
-          <IconButton
-            component="a"
-            href="https://www.youtube.com/@feum9243"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <YouTubeIcon sx={{ color: "#fff" }} />
-          </IconButton>
-        </Box>
-
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={handleLogout}
+          sx={{
+            borderColor: "#555",
+            color: "#fff",
+            "&:hover": {
+              borderColor: "#888",
+              backgroundColor: "#1a1a1a",
+            },
+          }}
+        >
+          Logout
+        </Button>
         <Stack direction="row" spacing={4}>
           {navLinks.map((link) => {
             const isActive = link.exact

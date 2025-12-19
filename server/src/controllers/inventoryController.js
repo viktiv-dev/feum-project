@@ -114,6 +114,7 @@ async function deleteInventory(req, res) {
 
 async function deleteInventoryByEvent(req, res) {
     try {
+      await barSaleService.deleteBarSalesByEvent(req.params.id);
       await inventoryService.deleteInventoryByEvent(req.params.id);
       res.status(200).json({message: "Inventory for event was deleted"})
     } catch (error) {

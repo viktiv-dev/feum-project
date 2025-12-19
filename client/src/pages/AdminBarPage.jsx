@@ -4,8 +4,7 @@ import Sidebar from "../components/SideBar";
 import ProductsPanel from "../components/ProductsPanel";
 import DrinksPanel from "../components/DrinksPanel";
 import InventoryPanel from "../components/InventoryPanel";
-import SalesPanel from "../components/SalesPanel";
-import { NavBar } from "../components/NavBar";
+import { AdminNavBar } from "../components/AdminNavBar";
 
 const SIDEBAR_WIDTH = 260;
 
@@ -23,7 +22,7 @@ export default function AdminBarPage() {
         bgcolor: "primary.main",
       }}
     >
-      <NavBar sx={{ position: "relative", zIndex: 3 }} />
+      <AdminNavBar sx={{ position: "relative", zIndex: 3 }} />
       <Box sx={{ display: "flex" }}>
         <Sidebar
           activeTab={activeTab}
@@ -38,7 +37,6 @@ export default function AdminBarPage() {
           {activeTab === "products" && <ProductsPanel />}
           {activeTab === "drinks" && <DrinksPanel />}
           {activeTab === "inventories" && <InventoryPanel />}
-          {activeTab === "sales" && <SalesPanel />}
         </Box>
       </Box>
     </Box>

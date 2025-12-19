@@ -100,11 +100,45 @@ async function updateEvent(req, res) {
     res.status(500).json({ message: 'Failed to update event', error: error.message });
   }
 }
+
+async function getSortedPastPublicEvents(req, res) {
+  try {
+    const events = await eventService.getSortedPastPublicEvents();
+    res.json(events);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch past events" });
+  }
+}
+
+async function getSortedFuturePublicEvents(req, res) {
+  try {
+    const events = await eventService.getSortedFuturePublicEvents();
+    res.json(events);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch future events" });
+  }
+}
+
+async function getNextPublicEvent(req, res) {
+  try {
+    const event = await eventService.getNextPublicEvent();
+    if (!event) return res.status(404).json({ message: "No upcoming events" });
+    res.json(event);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch next event" });
+  }
+}
 module.exports = {
   getEvent,
   getEvents,
   createEvent,
   deleteEvent,
   updateEvent,
+  getSortedPastPublicEvents,
+  getSortedFuturePublicEvents,
+  getNextPublicEvent,
   upload
 };

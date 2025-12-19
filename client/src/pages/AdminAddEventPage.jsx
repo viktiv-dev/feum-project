@@ -1,4 +1,4 @@
-import { NavBar } from "../components/NavBar";
+import { AdminNavBar } from "../components/AdminNavBar";
 import { EventForm } from "../components/EventForm";
 import { Box } from "@mui/material";
 
@@ -15,7 +15,7 @@ export const AdminAddEventPage = () => {
         alignItems: "center",
         position: "relative",
         bgcolor: "primary.main"}}>
-        <NavBar sx={{ position: "relative", zIndex: 3 }} /  >
+        <AdminNavBar sx={{ position: "relative", zIndex: 3 }} /  >
         <EventForm type="create" onSubmit={handleSave}/>
     </Box>
   )

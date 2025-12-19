@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { NavBar } from "../components/NavBar";
+import { AdminNavBar } from "../components/AdminNavBar";
 import { useParams } from "react-router-dom";
 import {
   Box,
@@ -150,12 +150,20 @@ const MemberRow = React.memo(
           }
           size="small"
           sx={{
-            ...INPUT_SX,
-            minWidth: 260,
             flex: "1 1 260px",
             "& .MuiOutlinedInput-root": {
               backgroundColor: "transparent",
-              height: "42px"
+              height: "42px",
+              width: "80%",
+            },
+            "& .MuiInputLabel-root": {
+              top: 0,
+              lineHeight: "42px",
+              transform: "translate(14px, 0px) scale(1)"
+            },
+            "& .MuiInputLabel-shrink": {
+              transform: "translate(14px, -6px) scale(0.75)", 
+              lineHeight: "normal",
             },
           }}
         />
@@ -164,12 +172,22 @@ const MemberRow = React.memo(
           label="Start"
           value={member.start}
           onChange={(val) => updateField(groupId, member.id, "start", val)}
-          slotProps={{
-            textField: {
-              sx: {
-                "& .MuiInputBase-input": { color: "#fff" },
-                backgroundColor: "transparent",
-              },
+          sx={{
+            width: "20%",
+            "& .MuiPickersInputBase-root": {
+              backgroundColor: "transparent",
+              height: "42px",
+              display: "flex",
+              alignItems: "center", 
+            },
+            "& .MuiInputLabel-root": {
+              top: 0,
+              lineHeight: "42px",
+              transform: "translate(14px, 0px) scale(1)"
+            },
+            "& .MuiInputLabel-shrink": {
+              transform: "translate(14px, -6px) scale(0.75)", 
+              lineHeight: "normal",
             },
           }}
         />
@@ -180,12 +198,22 @@ const MemberRow = React.memo(
           label="End"
           value={member.end}
           onChange={(val) => updateField(groupId, member.id, "end", val)}
-          slotProps={{
-            textField: {
-              sx: {
-                "& .MuiInputBase-input": { color: "#fff" },
-                backgroundColor: "transparent",
-              },
+          sx={{
+            width: "20%",
+            "& .MuiPickersInputBase-root": {
+              backgroundColor: "transparent",
+              height: "42px",
+              display: "flex",
+              alignItems: "center", 
+            },
+            "& .MuiInputLabel-root": {
+              top: 0,
+              lineHeight: "42px",
+              transform: "translate(14px, 0px) scale(1)"
+            },
+            "& .MuiInputLabel-shrink": {
+              transform: "translate(14px, -6px) scale(0.75)", 
+              lineHeight: "normal",
             },
           }}
         />
@@ -200,7 +228,9 @@ const MemberRow = React.memo(
               color: "rgba(124, 124, 124, 0.51)",
             },
             ml: 1,
-            color: isFirst ? "rgba(255,255,255,0.25)" : "rgba(255, 255, 255, 1)",
+            color: isFirst
+              ? "rgba(255,255,255,0.25)"
+              : "rgba(255, 255, 255, 1)",
             cursor: isFirst ? "not-allowed" : "pointer",
           }}
         >
@@ -449,7 +479,7 @@ export default function AdminEventPlan() {
         bgcolor: "primary.main",
       }}
     >
-      <NavBar sx={{ position: "relative", zIndex: 3 }} />
+      <AdminNavBar sx={{ position: "relative", zIndex: 3 }} />
       <Box sx={{ my: "4rem", minWidth: "85%", px: { xs: 2, md: 6 }, py: 0 }}>
         <Box
           sx={{

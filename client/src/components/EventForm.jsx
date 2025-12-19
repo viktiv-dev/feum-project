@@ -24,11 +24,11 @@ const parseToDayjs = (val) => {
   if (dayjs.isDayjs && dayjs.isDayjs(val)) return val;
   if (val instanceof Date) return dayjs(val);
   if (typeof val === "string") {
-    if (/\d{4}-\d{2}-\d{2}T/.test(val)) return dayjs(val); 
+    if (/\d{4}-\d{2}-\d{2}T/.test(val)) return dayjs(val);
     if (/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/.test(val)) {
-      return dayjs(val, "YYYY-MM-DD HH:mm:ss"); 
+      return dayjs(val, "YYYY-MM-DD HH:mm:ss");
     }
-    return dayjs(val); 
+    return dayjs(val);
   }
   return null;
 };
@@ -48,11 +48,11 @@ export const EventForm = ({
     location: "",
     is_public: false,
     dateTime: null,
-    image: null, 
-    picture_path: null, 
+    image: null,
+    picture_path: null,
   });
 
-  const [imagePreview, setImagePreview] = useState(null); 
+  const [imagePreview, setImagePreview] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
   const previousPriceRef = useRef(0);
@@ -105,8 +105,8 @@ export const EventForm = ({
         location: initialEvent.location ?? "",
         is_public: initialEvent.is_public ?? false,
         dateTime: parsedDate,
-        image: null, 
-        picture_path: serverPath, 
+        image: null,
+        picture_path: serverPath,
       });
 
       setImagePreview(previewUrl);
@@ -141,17 +141,48 @@ export const EventForm = ({
       return;
     }
 
-    if (
-      imagePreview &&
-      typeof imagePreview === "string" &&
-      imagePreview.startsWith("blob:")
-    ) {
-      URL.revokeObjectURL(imagePreview);
-    }
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => {
+      const width = img.width;
+      const height = img.height;
+      const desiredRatio = 16 / 9; // 1.777...
+      const actualRatio = width / height;
 
-    setEventData((prev) => ({ ...prev, image: file, picture_path: null }));
-    const url = URL.createObjectURL(file);
-    setImagePreview(url);
+      if (actualRatio < desiredRatio) {
+        alert(
+          `Image is too tall or narrow! Please use an image with a 16:9 ratio or wider. Your ratio is ${actualRatio.toFixed(
+            2
+          )}.`
+        );
+        URL.revokeObjectURL(img.src);
+        return;
+      }
+
+      const referenceHeight = 1005;
+      const maxDeviation = 100;
+      if (
+        height < referenceHeight - maxDeviation ||
+        height > referenceHeight + maxDeviation
+      ) {
+        console.warn(
+          `Image height is ${height}px, which is outside the typical range of ${
+            referenceHeight - maxDeviation
+          }px – ${referenceHeight + maxDeviation}px.`
+        );
+      }
+
+      if (
+        imagePreview &&
+        typeof imagePreview === "string" &&
+        imagePreview.startsWith("blob:")
+      ) {
+        URL.revokeObjectURL(imagePreview);
+      }
+
+      setEventData((prev) => ({ ...prev, image: file, picture_path: null }));
+      setImagePreview(img.src);
+    };
   };
 
   const handleCancel = async () => {
@@ -266,7 +297,7 @@ export const EventForm = ({
       onSubmit={handleSubmit}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
-          e.preventDefault(); 
+          e.preventDefault();
         }
       }}
       sx={{
@@ -357,14 +388,20 @@ export const EventForm = ({
               label="Event Date & Time"
               value={eventData.dateTime}
               onChange={(value) => handleChange("dateTime", value)}
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  sx: {
-                    "& .MuiInputBase-input": { color: "#ffffff" },
-                    backgroundColor: "transparent",
-                  },
+              sx={{
+                width: "100%",
+                "& .MuiPickersInputBase-root": {
+                  backgroundColor: "transparent",
                 },
+
+                "& .MuiPickersOutlinedInput-root": {
+                  backgroundColor: "transparent",
+                },
+                "& .MuiPickersInputBase-sectionsContainer": {
+                  backgroundColor: "transparent",
+                },
+              }}
+              slotProps={{
                 componentsProps: {
                   switchViewButton: {
                     sx: {

@@ -48,12 +48,6 @@ export default function Sidebar({
         >
           <ListItemText primary="Inventory" />
         </ListItemButton>
-        <ListItemButton
-          selected={activeTab === "sales"}
-          onClick={() => setActiveTab("sales")}
-        >
-          <ListItemText primary="Sales" />
-        </ListItemButton>
       </List>
     </Drawer>
   );

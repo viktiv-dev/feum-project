@@ -3,11 +3,9 @@ import { Box, Container } from "@mui/material";
 import background from "../assets/images/background.gif";
 import { AdminNavBar } from "../components/AdminNavBar";
 import { Typography } from "@mui/material";
+import { NavBar } from "../components/NavBar";
 
-const AdminHomePage = () => {
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
-  const username = user.username || "Admin";
-
+const HomePage = () => {
   return (
     <Box
       sx={{
@@ -19,7 +17,7 @@ const AdminHomePage = () => {
         bgcolor: "primary.main",
       }}
     >
-      <AdminNavBar sx={{ position: "relative", zIndex: 3 }} />
+      <NavBar sx={{ position: "relative", zIndex: 3 }} />
       <Box
         sx={{
           position: "absolute",
@@ -47,15 +45,15 @@ const AdminHomePage = () => {
           marginBottom: "20vh"
         }}
       >
-        <Typography variant="h2" color="secondary.main">
-          Welcome, {username}
+        <Typography variant="h2" sx={{fontSize: "6rem", letterSpacing: "3rem"}} color="secondary.main">
+          FEUM
         </Typography>
-        <Typography variant="h5" color="secondary.main">
-          FEUM ADMIN
+        <Typography variant="h5" sx={{fontSize: "1.7rem", fontWeight:"350", width: "75%"}} color="secondary.main">
+          FORENINGEN FOR ELEKTRONISK UNDERGRUNDSMUSIK
         </Typography>
       </Box>
     </Box>
   );
 };
 
-export default AdminHomePage;
+export default HomePage;

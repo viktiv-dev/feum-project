@@ -133,11 +133,16 @@ async function deleteBarSale(id) {
   return await BarSale.destroy({ where: { id } });
 }
 
+async function deleteBarSalesByEvent(eventId) {
+  await BarSale.destroy({ where: { event_id: eventId } });
+}
+
 module.exports = {
   getBarSale,
   getBarSales,
   createBarSale,
   updateBarSale,
   deleteBarSale,
-  getBarSalesByEvent
+  getBarSalesByEvent,
+  deleteBarSalesByEvent
 };

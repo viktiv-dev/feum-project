@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 const theme = createTheme({
   palette: {
@@ -301,6 +303,10 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: '"Helvetica Neue LT Std", Helvetica, Arial, sans-serif',
+    body2: {
+      color: "#fff",
+      letterSpacing: "0.18em"
+    },
     h6: {
       fontSize: "0.875rem",
       fontWeight: 400,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { NavBar } from "../components/NavBar";
+import { AdminNavBar } from "../components/AdminNavBar";
 import { EventForm } from "../components/EventForm";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { getEvent } from "../services/eventService";
@@ -70,7 +70,7 @@ export const AdminEditEventPage = () => {
         bgcolor: "primary.main",
       }}
     >
-      <NavBar sx={{ position: "relative", zIndex: 3 }} />
+      <AdminNavBar sx={{ position: "relative", zIndex: 3 }} />
       <EventForm
         type="edit"
         initialEvent={event}
